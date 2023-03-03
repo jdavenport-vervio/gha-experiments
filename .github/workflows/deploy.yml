@@ -23,7 +23,7 @@ jobs:
         run: sleep 5
 
       - name: End bake
-        run: echo Bake done (env = ${{ inputs.env }})
+        run: echo "Bake done (env = ${{ inputs.env }})"
         
   deploy:
     needs: bake
