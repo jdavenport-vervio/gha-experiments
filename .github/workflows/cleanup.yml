@@ -1,0 +1,16 @@
+name: Cleanup Deployment
+
+on:
+  workflow_run:
+    workflows: [Deploy App]
+    types:
+      - completed
+
+jobs:
+  teardown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Workflow run event type
+        run: echo ${{ github.event.workflow_run.conclusion }}
