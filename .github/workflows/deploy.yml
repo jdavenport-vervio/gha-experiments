@@ -2,6 +2,16 @@ name: Deploy app
 
 on:
   workflow_dispatch:
+    inputs:
+      env:
+        description: Environment
+        required: true
+        default: dev
+        type: choice
+        options:
+        - dev
+        - stg
+        - prod
 
 jobs:
   bake:
@@ -13,7 +23,7 @@ jobs:
         run: sleep 5
 
       - name: End bake
-        run: echo Bake done
+        run: echo Bake done (env = ${{ inputs.env }})
         
   deploy:
     needs: bake
