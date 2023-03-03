@@ -30,6 +30,7 @@ jobs:
   release:
     needs: deploy
     runs-on: ubuntu-latest
+    environment: require_approval
     steps:
       - uses: actions/checkout@v3
       
