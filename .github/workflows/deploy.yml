@@ -1,0 +1,49 @@
+name: Deploy app
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Start bake
+        run: sleep 5
+
+      - name: End bake
+        run: echo Bake done
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Start deploy
+        run: sleep 5
+
+      - name: End deploy
+        run: echo Deploy done
+        
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Start release
+        run: sleep 5
+
+      - name: End release
+        run: echo Release done
+        
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Start cleanup
+        run: sleep 5
+
+      - name: End cleanup
+        run: echo Cleanup done
