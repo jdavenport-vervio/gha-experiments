@@ -9,8 +9,9 @@ on:
 jobs:
   teardown:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'cancelled' }}
     steps:
       - uses: actions/checkout@v3
 
       - name: Workflow run event type
-        run: echo ${{ github.event.workflow_run.conclusion }}
+        run: echo ${{ toJSON(github.event.workflow_run) }}
