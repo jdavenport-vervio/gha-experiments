@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run a one-line script
         run: |
-          echo "::error Error occurred when running the action"
+          echo "echo "::error file=app.js,line=1,col=5,endColumn=7::Error while running the script"
           exit 1
