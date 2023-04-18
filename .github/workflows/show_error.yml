@@ -11,7 +11,7 @@ jobs:
       - name: Run a one-line script
         run: |
           GIT_BRANCH="${{ github.ref_name }}"
-          if [[ ! $(echo "$GIT_BRANCH" | grep -qE "^[a-zA-Z][-a-zA-Z0-9]*$") ]]; then
+          if ! echo "$GIT_BRANCH" | grep -qE "^[a-zA-Z][-a-zA-Z0-9]*$"; then
             MSG="Invalid branch name \"$GIT_BRANCH\", branch name must match regex \"[a-zA-Z][-a-zA-Z0-9]*\""
             echo "::error file=show_error.yml,line=14::$MSG"
             exit 1
