@@ -1,0 +1,22 @@
+name: Matrix job
+
+on:
+  workflow_dispatch:
+
+jobs:
+  copy-snapshots:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        product: [ "author", "publish" ]
+        type: [ "segment", "datastore" ]
+        include:
+          - product: author
+            bucket: aem-author-s3
+          - product: publish
+            bucket: aem-publish-s3
+
+    steps:
+      - run: |
+          echo "Copying ${{ matrix.type }} snapshot for ${{ matrix.product }}"
+          echo "aws s3 cp latest-snapshot.json s3://${{ matrix.bucket }}/snapshots/latest-snapshot.json"
