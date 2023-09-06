@@ -1,0 +1,25 @@
+name: Multiple async jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-author:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Test
+        run: |
+          echo "Starting sync..."
+          sleep $(( $RANDOM % 15 ))
+          echo "Done!"
+
+  sync-publish:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Test
+        run: |
+          echo "Starting sync..."
+          sleep $(( $RANDOM % 15 ))
+          echo "Done!"
