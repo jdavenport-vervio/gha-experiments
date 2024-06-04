@@ -1,0 +1,18 @@
+name: Overwriting env vars
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set env vars
+      run: |
+        echo "test_variable=123" >> $GITHUB_ENV
+        echo "test_variable=456" >> $GITHUB_ENV
+
+    - name: Print value
+      run: "echo $test_variable"
+    
