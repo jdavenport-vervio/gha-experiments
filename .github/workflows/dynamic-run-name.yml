@@ -1,0 +1,14 @@
+name: Dynamic Run name
+run-name: ${{ github.event_name == 'workflow_dispatch' ? inputs.environment : 'auto' }}
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Hello world"
+
