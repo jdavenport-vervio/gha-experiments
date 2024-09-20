@@ -4,6 +4,16 @@ run-name: ${{ github.event_name == 'workflow_dispatch' ? inputs.environment : 'a
 on:
   push:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment
+        type: choice
+        required: true
+        default: dev
+        options:
+          - dev
+          - stg
+          - prod
 
 jobs:
   test:
