@@ -1,0 +1,40 @@
+name: Comment
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Comment on PR
+        uses: actions/github-script@v9
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '### ⚠️ Low Code Coverage\nYour code coverage is below 70%. Please ensure you have written a test file for any new Java classes you added.'
+            })
+
+      - name: List PR comments
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const comments = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            console.log(comments.data);
+            console.log(comments.data.map(c => ({ body: c.body, performed_via_github_app: c.performed_via_github_app })));
+        
+
