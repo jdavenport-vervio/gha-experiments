@@ -24,5 +24,14 @@ jobs:
               repo: context.repo.repo,
               body: '### ⚠️ Low Code Coverage\nYour code coverage is below 70%. Please ensure you have written a test file for any new Java classes you added.'
             })
+
+      - name: List PR comments
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const comments = github.rest.issues.listComments({
+              issue_number: context.issue.number
+            });
+            console.log(comments);
         
 
