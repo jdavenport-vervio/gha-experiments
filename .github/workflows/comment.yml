@@ -34,7 +34,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            console.log(comments);
-            console.log(comments.map(c => ({ body: c.body, performed_via_github_app: c.performed_via_github_app })));
+            console.log(comments.data);
+            console.log(comments.data.map(c => ({ body: c.body, performed_via_github_app: c.performed_via_github_app })));
         
 
